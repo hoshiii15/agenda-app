@@ -47,6 +47,27 @@ export default function DashboardPage() {
         });
     }, []);
 
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "https://widget-aksesbilitas.onrender.com/widget-loader.js";
+        script.async = true;
+        script.defer = true;
+        script.setAttribute(
+            "data-widget-src",
+            "https://widget-aksesbilitas.onrender.com/widget_disabilitas.js"
+        );
+        script.setAttribute(
+            "data-jquery-src",
+            "https://widget-aksesbilitas.onrender.com/vendor/jquery-3.6.0.min.js"
+        );
+        script.setAttribute("data-widget-debug", "true");
+        script.setAttribute("api-key-resvoice", "k7yfhhgA");
+        document.body.appendChild(script);
+        return () => {
+            script.remove();
+        };
+    }, []);
+
     async function handleSubmit(e) {
         e.preventDefault();
         const token = localStorage.getItem("token");
